@@ -1,0 +1,7 @@
+{
+  "name": "wisdmlabs",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding"> 
+  
+    <ion-card *ngFor="let user of users | search : searchTerm" (click)="goToUserDetails(user)">
+      <img [src]="user.picture.large" />
+      <ion-card-header>
+        <ion-card-subtitle>{{ user.location.city }}</ion-card-subtitle>
+        <ion-card-title>{{ user.name.first }} {{ user.name.last }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+ 
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    
+</ion-content>
